@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script defer src="./js/app.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Code voorbeeld ML5</title>
+</head>
+<body>
+    <h2>Color hunter. Press play to play and check to check!</h2>
+    <video autoplay playsinline muted id="webcam" width="533" height="300"></video><br />
+    <div id="textOutput"></div>
+    <br />
+    <button id="labelRed">Label; red</button>
+    <button id="labelBlue">Label; blue</button>
+    <button id="labelWhite">Label; white</button>
+    <button id="train">Train</button>
+    <button id="save">Save</button>
+    <button id="load">Load</button>
+    <button id="play">Play</button>
+    <button id="check">Check</button>
+</body>
+</html>
