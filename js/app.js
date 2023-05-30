@@ -67,7 +67,7 @@ document.querySelector('#play').addEventListener("click", () => {
   // Store the generated label for comparison
   const generatedLabel = randomLabel;
 
-  document.querySelector('#check').addEventListener("click", () => {
+  const checkButtonClickHandler = () => {
     classifier.classify(video, (err, result) => {
       if (err) {
         console.log(err);
@@ -90,16 +90,22 @@ document.querySelector('#play').addEventListener("click", () => {
           speak(speechText);
         }
       }
+      // Remove the event listener after checking the result
+      checkButton.removeEventListener("click", checkButtonClickHandler);
     });
-  });
+  }
+
+  const checkButton = document.querySelector('#check');
+  checkButton.removeEventListener("click", checkButtonClickHandler); // Remove previous event listener if it exists
+  checkButton.addEventListener("click", checkButtonClickHandler);
 });
 
 
 
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices
-  .getUserMedia({ video: true })
-  .then((stream) => {
+    .getUserMedia({ video: true })
+    .then((stream) => {
       video.srcObject = stream;
     })
     .catch((err) => {
@@ -108,10 +114,9 @@ if (navigator.mediaDevices.getUserMedia) {
 }
 
 const load = () => {
-
-  featureExtractor.load('model/model.json'), () => {
+  featureExtractor.load('model/model.json', () => {
     console.log("Previously saved model loaded!");
-  }
+  });
 };
 
 const classify = () => {
